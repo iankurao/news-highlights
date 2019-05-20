@@ -79,3 +79,21 @@ def process_top_headlines_results(top_headlines_results_list) :
     top_headlines_results.append(top_headlines_object)
 
   return top_headlines_results
+
+
+
+
+def get_everything():
+    get_everything_url = everything_url.format(api_key)
+
+    with urllib.request.urlopen(get_everything_url) as url:
+        get_everything_data = url.read()
+        get_everything_response = json.loads(get_everything_data)
+        everything_results = None
+
+        if get_everything_response['articles']:
+            everything_results_list = get_everything_response['articles']
+            everything_results = process_everything_results(everything_results_list)
+
+    return everything_results
+
