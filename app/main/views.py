@@ -1,15 +1,15 @@
-from flask import render_template, request
-from app import app
-from .request import get_sources, get_top_headlines, get_everything
+from flask import render_template,request,redirect,url_for
+from . import main 
+from ..request import get_sources,get_top_headlines,get_everything
 
-@app.route('/')
+@main.route('/')
 def index():
     sources = get_sources()
     everything = get_everything()
     title = 'News Highlight'
     return render_template('index.html', sources = sources, title = title, everything = everything )
 
-@app.route('/source/<source>')
+@main.route('/source/<source>')
 def top_Headlines(source) :
   '''
   view Top_Headlines page function that returns the Top_Headlines from a source details page and its data 

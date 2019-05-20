@@ -1,23 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}]
-    <h1>UNIVERSAL NEWS SOURCES </h1> 
-    {% for source in sources %}
-    <p>
-        <a href="/source/{{source.id}}"> {{source.name}} </a>
-    </p>
-    {% endfor %}
 
-    <h1>Top Headlines</h1>
-    {% for hope in top_headlines %}
-    {% if hope.urlToImage %}
-        <h5>{{hope.title}}</h5>
-        <p>{{hope.descritpion}}</p>
-        <a href="{{hope.url}}">Read more...</a>
-        <p>Article by {{hope.author}} on {{hope.publishedAt}}</p>
-        <img src="{{hope.urlToImage}}">
+<div class= "container">
+    <div class= "row">
+      <div class="col-xs-6" style="background-color: #fff;
+              border: 1px solid #e8e8e9;
+               padding: 25px 20px;">     
+            <h1>UNIVERSAL NEWS SOURCES </h1> 
+            {% for source in sources %}
+            <p>
+              <a href="/source/{{source.id}}"> {{source.name}} </a>
+            </p>
+             {% endfor %}
+      </div>
 
-    {% endif %}
-    {% endfor %}
+      <div class="col-xs-6" style="background-color: #fff;
+         border: 1px solid #e8e8e9;
+         padding: 25px 20px;float: right">
 
+             <h1>Top Headlines</h1>
+              {% for hope in top_headlines %}
+              {% if hope.urlToImage %}
+              <h5>{{hope.title}}</h5>
 
+               <p>{{hope.description}}</p>
+                 <a href="{{hope.url}}">Read more...</a>
+               <p>Article by {{hope.author}} on {{hope.publishedAt}}</p>
+               <img src="{{hope.urlToImage}}">
+  
+      </div>
+       {% endif %}
+       {% endfor %}
+    </div>
+</div>
 {% endblock %}
