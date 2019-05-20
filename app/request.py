@@ -97,3 +97,19 @@ def get_everything():
 
     return everything_results
 
+def process_everything_results(everything_results_list):
+    everything_results = []
+    for everything_item in everything_results_list:
+        author = everything_item.get('author')
+        title = everything_item.get('title')
+        description = everything_item.get('description')
+        url = everything_item.get('url')
+        urlToImage = everything_item.get('urlToImage')
+        publishedAt = everything_item.get('publishedAt')
+
+        everything_object = Everything(author, title, description, url, urlToImage, publishedAt)
+        everything_results.append(everything_object)
+        
+    return everything_results
+
+
