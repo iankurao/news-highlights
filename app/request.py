@@ -3,6 +3,8 @@ import urllib.request, json
 from .models import source,topHeadlines, everything
 
 Source = source.Source
+Top_Headlines = topHeadlines.Top_Headlines
+Everything = everything.Everything
 
 api_key = app.config['NEWS_API_KEY']
 source_url = app.config['SOURCES_API_BASE_URL']
@@ -40,4 +42,19 @@ def process_source_results(source_list):
         source_results.append(source_object)
 
     return source_results
-    
+
+
+def get_top_headlines(source) :
+  get_top_headlines_url = top_headlines_url.format(source, api_key)
+
+  with urllib.request.urlopen(get_top_headlines_url) as url :
+    top_headlines_data = url.read()
+    top_headlines_response = json.loads(top_headlines_data)
+
+    top_headlines_results = None 
+
+    if top_headlines_response['articles'] :
+      top_headlines_results_list = top_headlines_response['articles']
+      top_headlines_results = process_top_headlines_results(top_headlines_results_list)
+
+  return(top_headlines_results)
