@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>News Sources</h1>
+    {% for source in sources %}
+        <p>
+            <a href="/source/{{source.id}}">{{source.name}}</a>
+        </p>
+    {% endfor %}
+
+    <h1>Trending News</h1>
+    {% for hope in everything %}
+    {% if hope.urlToImage %}
+    <h5>{{hope.title}}</h5>
+    <p>{{hope.description}}</p>
+    <a href="{{hope.url}}">Read more...</a>
+    <p><small class="text-muted">Article by {{hope.author}} on {{hope.publishedAt}} </small></p>
+    {% endif %}
+    {% endfor %}
+
+{% endblock %}
