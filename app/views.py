@@ -18,5 +18,5 @@ def top_Headlines(source) :
   top_headlines = get_top_headlines(source)
   print(top_headlines)
 
-  return render_template('top_headliness.html', sources = sources, top_headlines = top_headlines)
+  return render_template('top_headlines.html', sources = sources, top_headlines = top_headlines)
     
