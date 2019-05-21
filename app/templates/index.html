@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 {% endblock %}
 
-
 <!-- Content block -->
 {% block content %}
+
 <div class="container">
     <div class="row">
-      <div class="col-md-6" style="background-color: #fff;
+          
+      <div class="col-lg-6 col-md-12" style="background-color: #fff;
           border: 1px solid #e8e8e9;
           padding: 25px 20px;">     
          <div class="sidebar-sticky"> 
@@ -24,28 +25,38 @@
           {% endfor %}
          </div>
       </div> 
-
-
-      <div class="col-md-6" style="background-color: #fff;
+          
+      <div class="col-lg-6 col-md-12" style="background-color: #fff;
           border: 1px solid #e8e8e9;
-          padding: 25px 20px;float: right">
-      
-           <h1>Trending News</h1>
-           {% for hope in everything %}
-           {% if hope.urlToImage %}
-          <h5>{{hope.title}}</h5>
-      </div>
+          padding: 25px 20px;">     
+
+        <h1>Trending News</h1>
+        <img src="" alt="">
+        {% for hope in everything %}
+        {% if hope.urlToImage %}
+       <h5>{{hope.title}}</h5>
+
+       <div class="view overlay z-depth-1-half">
+          <img src="{{hope.urlToImage}}" class="img-fluid img-responsive" style="height: 30rem; width: 50rem;">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+       </div>
+
 
         <div class="card">
            <div class="card-body">
-               <p>{{hope.description}}</p>
-                <a href="{{hope.url}}">Read more...</a>
-               <p><small class="text-muted">Article by {{hope.author}} on {{hope.publishedAt}} </small></p>
+
+               <h4 class="my-4 font-weight-bold">{{hope.title|truncate(50)}}</h4>
+                <p class="grey-text">{{hope.description|truncate(50)}}</p>
+                <p>by <a><strong>{{hope.author}}</strong></a>, {{hope.publishedAt}} </p>
+               <a href="{{hope.urlToImage}}" class="btn btn-primary btn-md">Read more</a>
                {% endif %}
                {% endfor %}
           </div>
         </div>
-
+     </div>
        {% endblock %}
   </div>
 </div>
+
